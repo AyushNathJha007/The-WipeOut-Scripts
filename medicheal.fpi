@@ -1,0 +1,26 @@
+;Artificial Intelligence Script
+
+;Header
+
+desc          = Follow Waypoints (if available) or stands idle, When plr approaches prompts to restore health 
+
+;Triggers
+
+:state=0:hudreset,hudx=50,hudy=70,hudimagefine=gamecore\huds\medicheal.tga,hudname=medicheal,hudhide=1,hudmake=display,state=10
+:state=10,plrdistwithin=80:hudshow=medicheal,hudfadeout=medicheal
+:state=10,plrdistwithin=80:rotatetoplr,waypointstop
+:state=10,plrdistwithin=80,plrusingaction=1:activate=2
+:state=10,activated=2:state=2
+:state=2:activate=0,plraddhealth=500,plrsound=audiobank\items\healthup.wav,state=3
+:state=3,activated=0,plrdistfurther=100:animate=2,waypointstart,state=10
+
+
+
+:waypointstate=0:animate=2,waypointstart
+:waypointstate=3:animate=2,waypointnext
+:waypointstate=4:animate=2,waypointrandom
+:waypointstate=5:animate=2,waypointreverse
+:random=20:rotateheadrandom=65
+
+
+;End of Script
